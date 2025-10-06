@@ -12,8 +12,8 @@ import (
 
 var logPath string
 
-func SetLogPath(logPath string) error {
-	logPath = logPath
+func SetLogPath(filePath string) error {
+	logPath = filePath
 	logDir := path.Dir(logPath)
 	if _, err := os.Stat(logDir); os.IsNotExist(err) {
 		err = os.MkdirAll(logDir, 0755)
