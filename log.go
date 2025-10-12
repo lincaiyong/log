@@ -11,6 +11,7 @@ import (
 )
 
 var logPath string
+var pid = os.Getpid()
 
 func SetLogPath(filePath string) error {
 	logPath = filePath
@@ -37,7 +38,7 @@ func writeLogM(level, msg string, args ...any) {
 	lines := strings.Split(msg, "\n")
 	for _, line := range lines {
 		if level != "" {
-			line = fmt.Sprintf("%s %s", level, line)
+			line = fmt.Sprintf("%s [%d] %s", level, pid, line)
 		}
 		fmt.Println(line)
 		if logPath != "" {
